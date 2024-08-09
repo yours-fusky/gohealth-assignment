@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+# Senior Fullstack developer assignment for GoHealth
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my take on the assignment. A lot of things could be done differently, obviously. I experimented with SSE to stream data from the CSV file to frontend line by line as messages in case the CSV gets too big. This could be further improved to handle updates, inserts from multiple users and so on. I took a minimal approach with it by not including any unnecessary libraries that would be overkill for a project of this size. Eg. UI library like Boostrap, Formik or so for forms, Zod for validation.
 
-Currently, two official plugins are available:
+On the backend side, there are still couple of issues like missing validation. But mainly in case of multiple updates, while the previous update is still going on, will lead to lost data or unhalded errors. I consider this to be outside of the scope of this assignment due to lack of time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The frontend side is pretty solid. Some refactoring could be done to further simplify and tidy up the main page controller. UX and design could be obviously improved significantly. There are missing loading states, form validation and error handling. Again due to lack of time I was able to spend on this assignment.
 
-## Expanding the ESLint configuration
+## Run the project
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+You will need running docker on your system. Clone the repository and from inside run following commands
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+docker build -t gohealth-assignment .
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+docker run -p 3000:3000 gohealth-assignment
+```
+
+You should be able to see the application on your [localhost:3000](http://localhost:3000)
