@@ -52,12 +52,9 @@ function Issues() {
     }
 
     const closeIssue = async (id: string) => {
-        const response = await fetch(
-            `//localhost:3000/api/issues/${id}/close`,
-            {
-                method: 'post',
-            }
-        )
+        await fetch(`//localhost:3000/api/issues/${id}/close`, {
+            method: 'post',
+        })
         setIssues(
             issues.map((issue) =>
                 issue.id === id ? { ...issue, status: 'closed' } : issue

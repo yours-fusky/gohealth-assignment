@@ -14,7 +14,7 @@ type IssueFormProps = {
 
 function IssueForm({
     onSave,
-    data = { description: '', link: '', parentId: 0 },
+    data = { description: '', link: '', parentId: '0' },
 }: IssueFormProps) {
     const [formData, setFormData] = useState(data)
     const [errors, setErrors] = useState({})
@@ -22,11 +22,12 @@ function IssueForm({
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
         onSave({ ...formData })
-        setFormData({ description: '', link: '', parentId: 0 })
+        setFormData({ description: '', link: '', parentId: '0' })
     }
 
     const handleInputChange = (key: string) => (event: ChangeEvent) => {
-        const { id, value } = event.target
+        //ts-no-check
+        const { id, value } = event.target as any
         setFormData({
             ...formData,
             [key || id]: value,
@@ -66,7 +67,7 @@ export default IssueForm
 
 const styles = {
     form: {
-        textAlign: 'left',
+        textAlign: 'left' as const,
     },
     button: {
         borderRadius: '.5rem',
