@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import IssueForm from '../../components/IssueForm'
+import IssueTable from '../../components/IssueTable'
 
 type TIssue = {
     id: number
@@ -28,7 +29,7 @@ function Issues() {
         <>
             <h1>Issue tracker</h1>
             <IssueForm onSave={addIssue} />
-            <p>Issues</p>
+            <IssueTable data={issues} />
         </>
     )
 }
