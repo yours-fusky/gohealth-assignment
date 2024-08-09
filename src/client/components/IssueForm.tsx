@@ -4,7 +4,7 @@ import StyledInput from './StyledInput'
 type issueData = {
     description: string
     link: string
-    parentId: number
+    parentId: string
 }
 
 type IssueFormProps = {

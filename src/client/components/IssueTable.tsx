@@ -1,4 +1,6 @@
-function IssueTable({ data }) {
+import moment from 'moment'
+
+function IssueTable({ data, onCloseIssue }) {
     return (
         <div style={{ width: '80vw' }}>
             <h2>Issues Table</h2>
@@ -7,19 +9,41 @@ function IssueTable({ data }) {
             ) : (
                 <table style={{ width: '100%' }}>
                     <thead style={{ fontWeight: 600 }}>
-                        <td>Id</td>
-                        <td>Description</td>
-                        <td>Link</td>
-                        <td>Parent ID</td>
+                        <tr>
+                            <th>Id</th>
+                            <th>Description</th>
+                            <th>Parent ID</th>
+                            <th>Status</th>
+                            <th>CreationTimestamp</th>
+                            <th>Link</th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
                         {data.map((row) => {
                             return (
-                                <tr>
+                                <tr key={row.id}>
                                     <td>{row.id}</td>
                                     <td>{row.description}</td>
-                                    <td>{row.link}</td>
                                     <td>{row.parentId}</td>
+                                    <td>{row.status}</td>
+                                    <td>{row.link}</td>
+                                    <td>
+                                        {moment(Number(row.timestamp)).format(
+                                            'LLL'
+                                        )}
+                                    </td>
+                                    <td>
+                                        {row.status === 'open' && (
+                                            <button
+                                                onClick={() => {
+                                                    onCloseIssue(row.id)
+                                                }}
+                                            >
+                                                Close
+                                            </button>
+                                        )}
+                                    </td>
                                 </tr>
                             )
                         })}
