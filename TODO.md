@@ -1,6 +1,6 @@
 ### TODO list
 
--   [ ] Cleanup initial app
+-   [x] Cleanup initial app
 -   [ ] Create new issue form
 -   [ ] Display issues
 -   [ ] Init nodejs express app
